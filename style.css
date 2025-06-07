@@ -1,0 +1,633 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* General Styles */
+:root {
+    --bg-color: #1E1E1E; /* Main dark background */
+    --nav-bg-color: #1C1C1C; /* Navigation background */
+    --alt-bg-color: #1A1A1A; /* Slightly different dark for some sections */
+    --text-color-light: #EAEAEA;
+    --text-color-medium: #CCCCCC; /* For less prominent text */
+    --text-color-muted: #B0B0B0;
+    --text-color-script: #D8C7A7; /* Beige for script font */
+    --text-color-ivan-milev: #E0D8C7; 
+    --text-color-dark: #1E1E1E; 
+    --footer-bg-color: #D93D04; /* Bright Red/Orange from image */
+    --footer-text-color: #FFFFFF;
+    
+    --accent-color: #D8C7A7; 
+    --secondary-color: #555; 
+    --tertiary-color: #333;
+    --border-color-light: #444444;
+    --border-color-darker: #333333;
+
+
+    --font-primary: 'Open Sans', sans-serif;
+    --font-secondary: 'Montserrat', sans-serif; /* For headings */
+    --font-script: 'Great Vibes', cursive; 
+    --font-display: 'Oswald', sans-serif; 
+    --font-logo: 'Montserrat', sans-serif; 
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800; 
+
+    --container-width: 1200px;
+    --section-padding: 80px; 
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+    background-color: #000000; /* Pure black background for the frame */
+    padding: 10px; /* This creates the visible black frame */
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    color: var(--text-color-light);
+    background-color: var(--bg-color); /* Body background will be the dark gray */
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    color: var(--text-color-light);
+    margin-top: 0;
+    line-height: 1.3;
+    font-weight: var(--font-weight-bold);
+}
+
+h1.main-title { 
+    font-size: clamp(2.5rem, 6vw, 5.5rem); 
+    text-align: center;
+    margin-bottom: 20px; /* Reduced margin for closer images */
+    color: var(--text-color-light);
+    line-height: 1.2;
+    position: relative;
+    z-index: 2;
+}
+
+h1.main-title .script-font {
+    font-family: var(--font-script);
+    color: var(--text-color-script);
+    font-weight: normal; 
+    display: inline-block;
+}
+
+h1.main-title .sans-bold-font {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-color-light);
+    display: inline-block;
+}
+
+h2 { 
+    font-size: clamp(2rem, 4vw, 2.8rem); 
+    margin-bottom: 0.8em; 
+}
+h3 { 
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem); 
+    margin-bottom: 0.5em;
+    font-weight: var(--font-weight-bold);
+}
+
+p {
+    margin-bottom: 1.2em;
+    color: var(--text-color-medium);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+strong {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-light);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover { color: var(--text-color-light); }
+
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-padding { padding: var(--section-padding) 0; }
+.alt-bg { background-color: var(--alt-bg-color); }
+.text-center { text-align: center; }
+
+/* Navigation */
+#main-nav {
+    background-color: var(--nav-bg-color);
+    padding: 15px 0;
+    /* position: fixed, top, left, right, z-index REMOVED to make nav scroll with page */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    /* No longer needs width or height: auto as it's in normal flow */
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.nav-left a, .nav-right a {
+    color: var(--text-color-muted);
+    margin: 0 15px;
+    font-family: var(--font-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.nav-left a:hover, .nav-right a:hover { color: var(--text-color-light); }
+.artist-logo {
+    font-family: var(--font-logo);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color-ivan-milev) !important; 
+    letter-spacing: 1px;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--font-secondary);
+}
+.btn-nav-ticket {
+    background-color: transparent;
+    color: var(--text-color-muted);
+    border: 1px solid var(--text-color-muted);
+    padding: 8px 18px;
+}
+.btn-nav-ticket:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color-dark);
+    border-color: var(--accent-color);
+}
+.mobile-nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0; z-index: 1001; }
+.mobile-nav-toggle span { display: block; width: 25px; height: 3px; background-color: var(--text-color-light); margin: 5px 0; transition: all 0.3s ease-in-out; }
+
+/* Hero Section */
+#hero {
+    min-height: calc(100vh - 20px - 75px); /* Adjusted for html padding and nav height (approx) */
+    background-color: var(--bg-color); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px; /* General padding as nav is not fixed */
+    padding-bottom: 20px;
+    position: relative;
+    overflow: hidden; 
+}
+.hero-content-wrapper { 
+    position: relative; 
+    z-index: 2; 
+    padding: 20px;
+    display: flex; /* Added */
+    flex-direction: column; /* Added */
+    align-items: center; /* Added */
+    width:100%; /* Ensure wrapper takes width for centering */
+}
+.hero-images { 
+    /* Removed absolute positioning */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Space between images */
+    width: 100%;
+    max-width: 800px; /* Optional: constrain the width of the image group */
+    margin-top: 20px; /* Space below title */
+    margin-bottom: 30px; /* Space above button */
+    /* pointer-events: none; - Can be removed if not needed */
+}
+
+.hero-art-image {
+    /* REMOVED ALL INDIVIDUAL .hero-art-image-X styles */
+    border-radius: 4px; 
+    opacity: 0.9; 
+    box-shadow: none; 
+    object-fit: cover; 
+    max-width: 120px; /* Adjust as needed for new layout */
+    max-height: 120px; /* Adjust as needed for new layout */
+    /* No absolute positioning or transforms */
+}
+
+.btn-hero-ticket {
+    background-color: #f0f0f0;
+    color: var(--text-color-dark);
+    padding: 15px 40px;
+    font-size: 1rem;
+    /* margin-top: 30px; - Handled by .hero-images margin-bottom */
+    border: none;
+}
+.btn-hero-ticket:hover { background-color: var(--accent-color); color: var(--text-color-dark); transform: translateY(-2px); }
+.exhibition-info { 
+    margin-top: 30px; /* Adjusted margin */
+    font-size: 0.9rem; 
+    color: var(--text-color-muted); 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    position: relative; 
+    z-index: 2; 
+}
+
+/* General Button Styles for new sections */
+.btn-primary { background-color: var(--accent-color); color: var(--text-color-dark); border-color: var(--accent-color); }
+.btn-primary:hover { background-color: transparent; color: var(--accent-color); border-color: var(--accent-color); }
+.btn-outline { background-color: transparent; color: var(--text-color-light); border: 2px solid var(--text-color-light); }
+.btn-outline:hover { background-color: var(--text-color-light); color: var(--text-color-dark); }
+.btn-large { padding: 15px 35px; font-size: 1.1rem; }
+
+/* Why This Exhibition Section */
+#why-this-exhibition h2 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem); 
+    font-weight: var(--font-weight-extrabold);
+    margin-bottom: 20px;
+    text-align: left;
+}
+.why-exhibition-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    align-items: flex-start;
+}
+.why-exhibition-title-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.date-range {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%; 
+}
+.date-range span {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-light);
+}
+.date-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: var(--text-color-light);
+    margin: 0 15px;
+    max-width: 150px; 
+}
+#why-this-exhibition .btn-outline {
+    margin-top: 10px;
+    padding: 12px 30px;
+    border-radius: 25px; 
+}
+
+/* About Artist Updated Section */
+#about-artist-updated h2 { text-align: left; }
+.about-artist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    align-items: flex-start; 
+}
+.about-artist-image-container {
+     
+}
+.artist-image-updated {
+    width: 100%;
+    max-width: 400px; 
+    height: auto;
+    object-fit: cover;
+    border: 5px solid var(--border-color-light);
+}
+.about-artist-text p { margin-bottom: 1.5em; }
+
+/* What to See Section (Artwork Gallery) */
+.section-title-center { text-align: center; margin-bottom: 50px; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: var(--font-weight-extrabold);}
+.artwork-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1px; 
+    background-color: var(--border-color-darker); 
+    border: 1px solid var(--border-color-darker);
+}
+.artwork-card {
+    background-color: var(--bg-color); 
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.artwork-card-single { 
+    grid-column: span 2; 
+}
+
+.artwork-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 10px;
+}
+.artwork-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--text-color-light);
+}
+.artwork-header span {
+    font-size: 0.9rem;
+    color: var(--text-color-muted);
+}
+.artwork-card img {
+    width: 100%;
+    height: auto; 
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color-light);
+}
+.artwork-card p {
+    font-size: 0.9rem;
+    color: var(--text-color-medium);
+    line-height: 1.6;
+    flex-grow: 1; 
+}
+
+/* Quote Section */
+#quote-section { background-color: var(--alt-bg-color); text-align: center; }
+.artist-quote p {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.5;
+    color: var(--text-color-light);
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+.quote-divider {
+    width: 100px;
+    height: 3px;
+    background-color: var(--text-color-light);
+    border: none;
+    margin: 0 auto 30px auto;
+}
+#quote-section .btn-primary { border-radius: 25px; }
+
+/* Ticket Purchase Highlight Section */
+#ticket-purchase-highlight { background-color: var(--bg-color); }
+.ticket-highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+.ticket-highlight-box {
+    background-color: var(--alt-bg-color);
+    padding: 30px;
+    text-align: center;
+    border: 1px solid var(--border-color-light);
+}
+.exhibition-info-small {
+    font-size: 0.8rem;
+    color: var(--text-color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+.ticket-price-large {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--text-color-light);
+    margin: 10px 0 10px 0;
+}
+.ticket-highlight-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: var(--text-color-light);
+}
+.ticket-highlight-box .btn-outline {
+    width: 80%;
+    padding: 12px 20px;
+    border-radius: 25px;
+}
+
+.venue-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    color: var(--text-color-muted);
+    font-size: 0.9rem;
+    margin-top: 30px;
+    border-top: 1px solid var(--border-color-light);
+    padding-top: 30px;
+}
+.venue-info strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color-light);
+}
+.venue-info p { margin-bottom: 0; font-size: 0.85rem;}
+
+
+/* Footer */
+#main-footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-text-color);
+    padding: 40px 0;
+    text-align: center;
+}
+.footer-container {
+    display: grid;
+    grid-template-areas:
+        "logo"
+        "sponsors"
+        "contact"
+        "copyright";
+    gap: 30px;
+}
+.footer-logo {
+    grid-area: logo;
+    font-family: var(--font-logo);
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--footer-text-color);
+}
+.sponsors { grid-area: sponsors; }
+.sponsors-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: var(--font-weight-bold);
+}
+.sponsor-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.sponsor-logos span, .sponsor-logo-img {
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold);
+    opacity: 0.8;
+}
+.sponsor-logo-img {
+    height: 30px; 
+    width: auto;
+    filter: brightness(0) invert(1); 
+}
+
+.footer-contact {
+    grid-area: contact;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.footer-contact a {
+    color: var(--footer-text-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+.footer-contact a:hover { opacity: 1; }
+.footer-copyright {
+    grid-area: copyright;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Modal Styles */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; }
+.modal.active { display: flex; }
+.modal-content { background-color: #2a2a2a; color: var(--text-color-light); margin: auto; padding: 30px 40px; border-radius: 8px; width: 90%; max-width: 550px; position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.5); animation: fadeInModal 0.4s ease-out; border: 1px solid #444; }
+@keyframes fadeInModal { from { opacity: 0; transform: translateY(-30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.close-button { color: var(--text-color-muted); float: right; font-size: 32px; line-height: 1; font-weight: bold; position: absolute; top: 15px; right: 20px; background: none; border: none; cursor: pointer; transition: color 0.2s ease; }
+.close-button:hover, .close-button:focus { color: var(--text-color-light); }
+.modal-step h2 { text-align: center; margin-bottom: 25px; color: var(--accent-color); }
+.ticket-options { display: flex; flex-direction: column; gap: 15px; }
+.ticket-option { background-color: #333; border: 2px solid #444; padding: 15px 20px; border-radius: 6px; cursor: pointer; transition: border-color 0.3s ease, background-color 0.3s ease; text-align: left; width: 100%; color: var(--text-color-light); }
+.ticket-option:hover { border-color: var(--accent-color); background-color: #3a3a3a; }
+.ticket-option h3 { margin: 0 0 5px 0; color: var(--text-color-light); }
+.ticket-option p { margin: 0; color: var(--text-color-muted); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-color-light); }
+.form-group input[type="text"], .form-group input[type="email"] { width: calc(100% - 24px); padding: 12px; border: 1px solid #555; background-color: #383838; color: var(--text-color-light); border-radius: 4px; font-size: 1rem; transition: border-color 0.3s, box-shadow 0.3s; }
+.form-group input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(216, 199, 167, 0.3); }
+.ticket-confirmation { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; margin-bottom: 25px; }
+.ticket-confirmation .ticket-details p { color: var(--text-color-muted); }
+.ticket-confirmation .ticket-details p:first-child { color: var(--text-color-light); font-weight: bold; }
+.qr-code-container p { color: var(--text-color-light); }
+.qr-code-container img { border: 1px solid #555; padding: 8px; background-color: white; border-radius: 4px; margin-top:5px; }
+.modal-actions { display: flex; justify-content: space-around; gap: 15px; margin-top: 20px; }
+.modal-actions .btn { flex-grow: 1; }
+.modal-actions .btn-primary { background-color: var(--accent-color); color: var(--text-color-dark); border-color: var(--accent-color); }
+.modal-actions .btn-primary:hover { background-color: transparent; color: var(--accent-color); }
+.modal-actions .btn-secondary { background-color: #555; color: var(--text-color-light); border-color: #555; }
+.modal-actions .btn-secondary:hover { background-color: #666; border-color: #666; }
+.modal-actions .btn-tertiary { background-color: transparent; color: var(--text-color-muted); border: 1px solid var(--text-color-muted); }
+.modal-actions .btn-tertiary:hover { color: var(--text-color-light); border-color: var(--text-color-light); }
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    /* No specific hero image styles needed here anymore */
+    .why-exhibition-grid, .about-artist-grid { grid-template-columns: 1fr; text-align: center; }
+    #why-this-exhibition h2, #about-artist-updated h2 { text-align: center; }
+    .why-exhibition-title-date { align-items: center; }
+    .date-range { justify-content: center; }
+    .about-artist-image-container { margin: 0 auto 30px auto; } 
+    .artist-image-updated { margin: 0 auto; } 
+    .artwork-gallery { grid-template-columns: 1fr; } 
+    .artwork-card-single { grid-column: span 1; } 
+}
+
+@media (max-width: 768px) {
+    #main-nav.nav-open .nav-left, #main-nav.nav-open .nav-right { 
+        width: calc(100% - 0px); 
+        left:0;
+        top: calc(100% + 0px); 
+    }
+    .nav-left, .nav-right, .nav-center .artist-logo { display: none; }
+    .nav-container { justify-content: flex-end; }
+    .nav-center { position: absolute; left: 50%; transform: translateX(-50%); display: block; }
+    .artist-logo { font-size: 1.3rem; }
+    #main-nav.nav-open .nav-left, #main-nav.nav-open .nav-right { display: flex; flex-direction: column; position: absolute; background-color: var(--nav-bg-color); padding: 10px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    #main-nav.nav-open .nav-left a, #main-nav.nav-open .nav-right a, #main-nav.nav-open .nav-right .btn-nav-ticket { margin: 10px 20px; text-align: center; width: auto; }
+    #main-nav.nav-open .btn-nav-ticket { display: block; margin: 10px auto; }
+    .mobile-nav-toggle { display: block; }
+    #main-nav.nav-open .mobile-nav-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    #main-nav.nav-open .mobile-nav-toggle span:nth-child(2) { opacity: 0; }
+    #main-nav.nav-open .mobile-nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    h1.main-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.2rem); }
+    
+    .hero-art-image {
+        max-width: 100px; /* Smaller images on smaller screens */
+        max-height: 100px;
+    }
+
+    .modal-content { padding: 25px; max-width: 95%; }
+    .modal-actions { flex-direction: column; }
+    .modal-actions .btn { width: 100%; }
+    .footer-container {
+        grid-template-areas:
+            "logo"
+            "sponsors"
+            "contact"
+            "copyright";
+        text-align: center;
+    }
+    .footer-contact { flex-direction: column; gap: 10px;}
+    .sponsor-logos { gap: 15px; }
+}
+
+@media (max-width: 480px) {
+    html { padding: 5px; } 
+    #hero {
+        min-height: calc(100vh - 10px - 65px); /* Adjusted for html padding and nav height (approx) */
+        padding-top: 15px; 
+        padding-bottom: 15px;
+    }
+    body { font-size: 15px; }
+    :root { --section-padding: 50px; }
+    h1.main-title { margin-bottom: 15px; }
+    .btn-hero-ticket { padding: 12px 30px; font-size: 0.9rem; margin-top:20px;}
+    .exhibition-info { font-size: 0.75rem; margin-top: 25px;}
+
+    .hero-images {
+        gap: 10px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .hero-art-image {
+        max-width: 80px; /* Even smaller images for very small screens */
+        max-height: 80px;
+    }
+
+    .modal-content { padding: 20px 15px; }
+    .form-group input[type="text"], .form-group input[type="email"] { padding: 10px; }
+    .artist-logo { font-size: 1.2rem; }
+    .date-range span { font-size: 1.5rem; }
+    .date-line { max-width: 100px; }
+    .artwork-header h3 { font-size: 1.2rem; }
+    .ticket-price-large {font-size: clamp(2.5rem, 8vw, 3.5rem);}
+    .venue-info { grid-template-columns: 1fr; text-align: center;}
+    .venue-info div { margin-bottom: 10px; }
+}
