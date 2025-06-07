@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const openModalButtons = [
         document.getElementById('openTicketModalNav'),
         document.getElementById('openTicketModalHero'),
-        document.getElementById('openTicketModalWhy'), // New button from "Why This Exhibition"
-        document.getElementById('openTicketModalQuote'), // New button from "Quote Section"
-        document.getElementById('openTicketModalStandardPage'), // New button from "Ticket Highlight - Standard"
-        document.getElementById('openTicketModalStudentPage') // New button from "Ticket Highlight - Student"
-        // Note: openTicketModalFooter was removed as the old footer section was removed.
+        document.getElementById('openTicketModalWhy'), 
+        document.getElementById('openTicketModalQuote'),
+        document.getElementById('openTicketModalStandardPage'), 
+        document.getElementById('openTicketModalStudentPage')
+
     ].filter(btn => btn != null); 
 
     const closeModalButton = modal.querySelector('.close-button');
@@ -126,20 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (downloadTicketButton) {
         downloadTicketButton.addEventListener('click', () => {
-            // This is a mock download. In a real app, you'd generate and download a file.
             alert('Билетът е "свален" (демонстрация).\nВ реално приложение тук ще се генерира PDF или изображение.');
             console.log('Downloading ticket (mock)...');
-            // Example:
-            // const link = document.createElement('a');
-            // link.href = qrCodeImage.src; // Or a link to a generated PDF
-            // link.download = 'YourTicket.png'; // Or YourTicket.pdf
-            // document.body.appendChild(link);
-            // link.click();
-            // document.body.removeChild(link);
         });
     }
-
-    // Mobile navigation toggle
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const mainNav = document.getElementById('main-nav');
 
